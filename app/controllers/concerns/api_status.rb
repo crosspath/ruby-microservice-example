@@ -2,7 +2,7 @@ module ApiStatus
   # Not equal to HTTP Response Statuses
   CODES = {
     100 => 'Not Authorised',       # Custom status
-    110 => 'User Not found',
+    110 => 'User Not Found',
     111 => 'UserOrder Not Found',
     112 => 'User Cannot Invite Himself',
     113 => 'This UserOrder Is Already Referenced For Bonuses',

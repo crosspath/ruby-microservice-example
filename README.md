@@ -2,7 +2,8 @@
 
 An example of a microservice written on Ruby.
 
-The idea beside this project is to show how to create real-life web applications on different languages. It will help me to choose better programming language for my needs.
+The idea beside this project is to show, how to create real-life web applications on different languages.  
+It will help me to choose better programming language for my needs.
 
 This project does not have any GUI or front-end. So, take your terminal to run this project!
 
@@ -20,7 +21,7 @@ Configurate: copy file `.env.template` to `.env` & replace params `RAILS_ENV`, `
 
 Create database & user (optional)
 
-Initialize database for this microservice:
+Initialise database for this microservice:
 
 ```
 bin/rake db:migrate
@@ -33,7 +34,7 @@ Run server:
 rails s
 ```
 
-Make a HTTP request:
+Make a HTTP request with this template (assuming you ran this project on `localhost:3000`):
 
 ```
 curl -X POST http://localhost:3000/api/v1/referrals" -d "api_key=<your-API_KEY-here>" -d "order=<UserOrder.id>" -d "referrer=<User.id>"
@@ -43,9 +44,9 @@ If your `API_KEY` is not valid, you'll get message:
 
     {"status":100,"error":"Not Authorised"}
 
-If you try to add bonuses to the user who does not exist in the database, then you'll get message:
+If you try to add bonuses to the user, who does not exist in the database, then you'll get message:
 
-    {"status":110,"error":"User Not found"}
+    {"status":110,"error":"User Not Found"}
 
 When user order is not found, you'll get this message:
 
