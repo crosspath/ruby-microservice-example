@@ -1,24 +1,64 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An example of a microservice written on Ruby.
 
-Things you may want to cover:
+The idea beside this project is to show how to create real-life web applications on different languages. It will help me to choose better programming language for my needs.
 
-* Ruby version
+This project does not have any GUI or front-end. So, take your terminal to run this project!
 
-* System dependencies
+## HOW TO RUN
 
-* Configuration
+Copy sources & install required libraries:
 
-* Database creation
+```
+git clone git@github.com:crosspath/ruby-microservice-example.git
+cd ruby-microservice-example
+bundle install
+```
 
-* Database initialization
+Configurate: copy file `.env.template` to `.env` & replace params `RAILS_ENV`, `DATABASE_URL` & `API_KEY`
 
-* How to run the test suite
+Create database & user (optional)
 
-* Services (job queues, cache servers, search engines, etc.)
+Initialize database for this microservice:
 
-* Deployment instructions
+```
+bin/rake db:migrate
+bin/rake db:seed
+```
 
-* ...
+Run server:
+
+```
+rails s
+```
+
+Make a HTTP request:
+
+```
+curl -X POST http://localhost:3000/api/v1/referrals" -d "api_key=<your-API_KEY-here>" -d "order=<UserOrder.id>" -d "referrer=<User.id>"
+```
+
+If your `API_KEY` is not valid, you'll get message:
+
+    {"status":100,"error":"Not Authorised"}
+
+If you try to add bonuses to the user who does not exist in the database, then you'll get message:
+
+    {"status":110,"error":"User Not found"}
+
+When user order is not found, you'll get this message:
+
+    {"status":111,"error":"UserOrder Not Found"}
+
+Selected `order` should not belong to selected `referrer`. Otherwise you'll get this message:
+
+    {"status":112,"error":"User Cannot Invite Himself"}
+
+If selected user order is referenced with another user already, then you'll get this:
+
+    {"status":113,"error":"This UserOrder Is Already Referenced For Bonuses"}
+
+And if everything correct, then you'll get this message (value of `bonuses` may be different, depending on the price of user order):
+
+    {"status":200,"bonuses":0.28}
