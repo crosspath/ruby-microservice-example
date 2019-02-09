@@ -1,9 +1,13 @@
 # README
 
-An example of a microservice written on Ruby.
+An example of a microservice written on [Ruby](https://www.ruby-lang.org) and [Rails framework](https://rubyonrails.org/).
 
 The idea beside this project is to show, how to create real-life web applications on different languages.  
 It will help me to choose better programming language for my needs.
+
+See also this microservice written on other languages:
+
+* [Microservice on Crystal](https://github.com/crosspath/crystal-microservice-example)
 
 This project does not have any GUI or front-end. So, take your terminal to run this project!
 
@@ -37,7 +41,10 @@ rails s
 Make a HTTP request with this template (assuming you ran this project on `localhost:3000`):
 
 ```
-curl -X POST http://localhost:3000/api/v1/referrals" -d "api_key=<your-API_KEY-here>" -d "order=<UserOrder.id>" -d "referrer=<User.id>"
+curl -X POST http://localhost:3000/api/v1/referrals \
+     -d "api_key=<your-API_KEY-here>" \
+     -d "order=<UserOrder.id>" \
+     -d "referrer=<User.id>"
 ```
 
 If your `API_KEY` is not valid, you'll get message:

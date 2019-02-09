@@ -55,7 +55,7 @@ end
     DataGenerator.orders_count.times do |t|
       order = user.user_orders.create!(
         product: DataGenerator.product,
-        price: DataGenerator.product
+        price: DataGenerator.price
       )
       
       if t == 0 && DataGenerator.coin?
@@ -65,7 +65,6 @@ end
           
           log = order.create_bonus_log!(
             bonus_account_id: account.id,
-            user_order_id: order.id,
             bonuses: order.bonus_amount
           )
           

@@ -12,8 +12,20 @@ class ApplicationController < ActionController::API
     render json: result.merge(options)
   end
   
-  def response_error(code, **options)
-    result = {status: code, error: ApiStatus::CODES[code]}
-    render json: result.merge(options), status: :unprocessable_entity
+  def response_error(code, exception = nil, **options)
+    result = {status: code, error: ApiStatus::CODES[code]}.merge(options)
+    
+    if exception && show_exceptions?
+      result.merge!(
+        message: exception.message,
+        trace:   exception.backtrace[0..9]
+      )
+    end
+    
+    render json: result, status: :unprocessable_entity
+  end
+  
+  def show_exceptions?
+    ENV.fetch('SHOW_EXCEPTIONS', '0') > '0'
   end
 end
