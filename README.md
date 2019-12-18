@@ -11,7 +11,7 @@ See also this microservice written on other languages:
 
 This project does not have any GUI or front-end. So, take your terminal to run this project!
 
-## HOW TO RUN
+## Setting up the project
 
 Copy sources & install required libraries:
 
@@ -28,14 +28,23 @@ Create database & user (optional)
 Initialise database for this microservice:
 
 ```
-bin/rake db:migrate
-bin/rake db:seed
+bin/rails db:migrate
+  # or #
+bin/rails db:schema:load
 ```
 
-Run server:
+and then:
 
 ```
-rails s
+bin/rails db:seed
+```
+
+## Usage
+
+Run server once before sending HTTP requests:
+
+```
+bin/rails s
 ```
 
 Make a HTTP request with this template (assuming you ran this project on `localhost:3000`):
@@ -59,7 +68,7 @@ When user order is not found, you'll get this message:
 
     {"status":111,"error":"UserOrder Not Found"}
 
-Selected `order` should not belong to selected `referrer`. Otherwise you'll get this message:
+Selected `order` should not belong to the selected `referrer`. Otherwise you'll get this message:
 
     {"status":112,"error":"User Cannot Invite Himself"}
 
@@ -67,6 +76,6 @@ If selected user order is referenced with another user already, then you'll get 
 
     {"status":113,"error":"This UserOrder Is Already Referenced For Bonuses"}
 
-And if everything correct, then you'll get this message (value of `bonuses` may be different, depending on the price of user order):
+And if everything is correct, then you'll get this message (value of `bonuses` may be different, depending on the price of user order):
 
     {"status":200,"bonuses":0.28}
