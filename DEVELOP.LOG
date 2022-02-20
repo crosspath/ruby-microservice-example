@@ -1,7 +1,0 @@
-shell:
-  rails new . -d postgresql --skip-yarn --skip-git --skip-action-mailer --skip-active-storage --skip-action-cable --skip-sprockets --skip-coffee --skip-javascript --skip-turbolinks --skip-test --skip-system-test --edge --api
-
-psql:
-  create database ruby_mserv;
-  create user ruby_mserv password 'xxxxxx';
-  grant all on database ruby_mserv to ruby_mserv;
