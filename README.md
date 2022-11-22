@@ -23,7 +23,11 @@ bundle install
 
 Configurate: copy file `.env.template` to `.env` & replace params `RAILS_ENV`, `DATABASE_URL` & `API_KEY`
 
-Create database & user (optional)
+Create database:
+
+```
+bin/rails db:create
+```
 
 Initialise database for this microservice:
 
